@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   end
   s.rubygems_version = '2.3.3'
   s.required_ruby_version = '>=2.3'
-  s.name = 'Tacky'
+  s.name = 'tacky'
   s.version = '0.0.0'
   s.license = 'MIT'
   s.summary = 'Primitive Object Memoization for Ruby'
