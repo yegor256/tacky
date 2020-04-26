@@ -37,7 +37,7 @@ class Tacky
   # Deep nesting will stop at these classes.
   STOP = [Numeric, NilClass, TrueClass, FalseClass, Array, Hash, Time].freeze
 
-  def initialize(origin, deep: false)
+  def initialize(origin, deep: true)
     @origin = origin
     @cache = {}
     @deep = deep
