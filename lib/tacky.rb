@@ -34,9 +34,10 @@
 class Tacky
   undef_method :send
 
-  def initialize(origin)
+  def initialize(origin, deep: false)
     @origin = origin
     @cache = {}
+    @deep = deep
     @mutex = Mutex.new
   end
 
@@ -46,6 +47,7 @@ class Tacky
         @cache[args] = @origin.__send__(*args) do |*a|
           yield(*a) if block_given?
         end
+        @cache[args] = Tacky.new(@cache[args]) if @deep
       end
       @cache[args]
     end

@@ -39,4 +39,18 @@ class TackyTest < Minitest::Test
     first = bar.value
     assert(bar.value == first)
   end
+
+  def test_deep_caching
+    foo = Object.new
+    def foo.child
+      bar = Object.new
+      def bar.value
+        rand(100)
+      end
+      bar
+    end
+    bar = Tacky.new(foo, deep: true)
+    first = bar.child.value
+    assert(bar.child.value == first)
+  end
 end
