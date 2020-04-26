@@ -37,15 +37,18 @@ class Tacky
   def initialize(origin)
     @origin = origin
     @cache = {}
+    @mutex = Mutex.new
   end
 
   def method_missing(*args)
-    unless @cache.key?(args)
-      @cache[args] = @origin.__send__(*args) do |*a|
-        yield(*a) if block_given?
+    @mutex.synchronize do
+      unless @cache.key?(args)
+        @cache[args] = @origin.__send__(*args) do |*a|
+          yield(*a) if block_given?
+        end
       end
+      @cache[args]
     end
-    @cache[args]
   end
 
   def respond_to?(method, include_private = false)
