@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = '2.3.3'
   s.required_ruby_version = '>=2.3'
   s.name = 'tacky'
-  s.version = '0.0.0'
+  s.version = '0.3.2'
   s.license = 'MIT'
   s.summary = 'Primitive Object Memoization for Ruby'
   s.description = 'Decorate your existing Ruby object with Tacky
