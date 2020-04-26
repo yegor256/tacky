@@ -51,6 +51,7 @@ class TackyTest < Minitest::Test
     end
     bar = Tacky.new(foo, deep: true)
     first = bar.child.value
+    assert(first.is_a?(Numeric))
     assert(bar.child.value == first)
   end
 end

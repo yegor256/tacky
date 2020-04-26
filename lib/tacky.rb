@@ -34,6 +34,9 @@
 class Tacky
   undef_method :send
 
+  # Deep nesting will stop at these classes.
+  STOP = [Numeric, NilClass, TrueClass, FalseClass, Array, Hash].freeze
+
   def initialize(origin, deep: false)
     @origin = origin
     @cache = {}
@@ -47,7 +50,9 @@ class Tacky
         @cache[args] = @origin.__send__(*args) do |*a|
           yield(*a) if block_given?
         end
-        @cache[args] = Tacky.new(@cache[args], deep: @deep) if @deep
+        if @deep && STOP.none? { |t| @cache[args].is_a?(t) }
+          @cache[args] = Tacky.new(@cache[args], deep: @deep)
+        end
       end
       @cache[args]
     end
