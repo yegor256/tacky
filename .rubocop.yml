@@ -2,6 +2,8 @@ AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.3
 
+Layout/EndOfLine:
+  EnforcedStyle: lf
 Style/MethodMissingSuper:
   Enabled: false
 Layout/EmptyLineAfterGuardClause:
