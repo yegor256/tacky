@@ -26,7 +26,17 @@ require 'tacky'
 obj = Tacky.new(obj)
 ```
 
-That's it. All method calls will be cached.
+That's it, all method calls will be cached.
+
+If you want all methods of everything your methods return be cached, you
+need to use "deep" caching:
+
+
+```ruby
+obj = Tacky.new(obj, deep: true)
+```
+
+`Tacky` is thread-safe.
 
 ## How to contribute
 
