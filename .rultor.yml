@@ -8,8 +8,8 @@ release:
   script: |-
     bundle exec rake
     rm -rf *.gem
-    sed -i "s/0\.0\.0/${tag}/g" Tacky.gemspec
-    git add Tacky.gemspec
+    sed -i "s/0\.0\.0/${tag}/g" tacky.gemspec
+    git add tacky.gemspec
     git commit -m "Version set to ${tag}"
     gem build tacky.gemspec
     chmod 0600 ../rubygems.yml
