@@ -7,7 +7,7 @@
 [![Build Status](https://travis-ci.org/yegor256/tacky.svg)](https://travis-ci.org/yegor256/tacky)
 [![Build status](https://ci.appveyor.com/api/projects/status/e61qudqccs0fu8xt?svg=true)](https://ci.appveyor.com/project/yegor256/tacky)
 [![Gem Version](https://badge.fury.io/rb/tacky.svg)](http://badge.fury.io/rb/tacky)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5528e182bb5e4a2ecc1f/maintainability)](https://codeclimate.com/github/yegor256/tacky/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/224939b58aa606fdd56c/maintainability)](https://codeclimate.com/github/yegor256/tacky/maintainability)
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/yegor256/tacky/master/frames)
 
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/tacky)](https://hitsofcode.com/view/github/yegor256/tacky)
