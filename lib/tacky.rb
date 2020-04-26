@@ -47,7 +47,7 @@ class Tacky
         @cache[args] = @origin.__send__(*args) do |*a|
           yield(*a) if block_given?
         end
-        @cache[args] = Tacky.new(@cache[args]) if @deep
+        @cache[args] = Tacky.new(@cache[args], deep: @deep) if @deep
       end
       @cache[args]
     end
