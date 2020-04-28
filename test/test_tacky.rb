@@ -63,4 +63,14 @@ class TackyTest < Minitest::Test
     bar = Tacky.new(foo)
     assert(bar.value.is_a?(String))
   end
+
+  def test_diff_methods_by_params
+    foo = Object.new
+    def foo.value(val)
+      val
+    end
+    bar = Tacky.new(foo)
+    assert_equal(5, bar.value(5))
+    assert_equal(10, bar.value(10))
+  end
 end
