@@ -54,4 +54,13 @@ class TackyTest < Minitest::Test
     assert(first.is_a?(Numeric))
     assert(bar.child.value == first)
   end
+
+  def test_stops_on_string
+    foo = Object.new
+    def foo.value
+      'hello'
+    end
+    bar = Tacky.new(foo)
+    assert(bar.value.is_a?(String))
+  end
 end
