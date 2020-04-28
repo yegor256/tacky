@@ -76,11 +76,12 @@ class TackyTest < Minitest::Test
 
   def test_diff_methods_by_hash_params
     foo = Object.new
-    def foo.value(val: false)
-      val
+    def foo.value(*)
+      rand(1000)
     end
     bar = Tacky.new(foo)
-    assert_equal(5, bar.value(val: 5))
-    assert_equal(10, bar.value(val: 10))
+    assert_equal(bar.value(val: 5), bar.value(val: 5))
+    assert_equal(bar.value(val: 10), bar.value(val: 10))
+    assert_equal(bar.value(val: true), bar.value(val: true))
   end
 end
