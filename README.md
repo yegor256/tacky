@@ -28,18 +28,18 @@ obj = Tacky.new(obj)
 
 That's it, all method calls will be cached. This means that only the first
 call of any method will actually reach your object. All consecutive calls
-will reac the `Tacky` decorator, which will return previously calculated
-values.
+will be intercepted by the `Tacky` decorator, which will return
+previously calculated values. The decorator keeps all values in its internal
+`Hash`.
 
-If you want all methods of everything your methods return be cached, you
+If you want all methods of everything your methods return be cached too, you
 need to use "deep" caching (it's `true` by default):
-
 
 ```ruby
 obj = Tacky.new(obj, deep: true)
 ```
 
-`Tacky` is thread-safe.
+Keep in mind that `Tacky` is thread-safe.
 
 ## How to contribute
 
