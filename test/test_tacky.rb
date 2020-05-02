@@ -64,6 +64,24 @@ class TackyTest < Minitest::Test
     assert(bar.value.is_a?(String))
   end
 
+  def test_wraps_void_returning_methods
+    foo = Class.new do
+      attr_reader :done
+      def initialize
+        @done = 0
+      end
+
+      def touch
+        @done += 1
+        nil
+      end
+    end.new
+    bar = Tacky.new(foo)
+    bar.touch
+    bar.touch
+    assert_equal(1, foo.done)
+  end
+
   def test_diff_methods_by_params
     foo = Object.new
     def foo.value(val)

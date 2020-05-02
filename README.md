@@ -26,7 +26,10 @@ require 'tacky'
 obj = Tacky.new(obj)
 ```
 
-That's it, all method calls will be cached.
+That's it, all method calls will be cached. This means that only the first
+call of any method will actually reach your object. All consecutive calls
+will reac the `Tacky` decorator, which will return previously calculated
+values.
 
 If you want all methods of everything your methods return be cached, you
 need to use "deep" caching (it's `true` by default):
