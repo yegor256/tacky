@@ -67,6 +67,7 @@ class TackyTest < Minitest::Test
   def test_wraps_void_returning_methods
     foo = Class.new do
       attr_reader :done
+
       def initialize
         @done = 0
       end
