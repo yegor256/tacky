@@ -3,7 +3,6 @@ AllCops:
   TargetRubyVersion: 2.3
   NewCops: enable
   SuggestExtensions: false
-
 Layout/EndOfLine:
   EnforcedStyle: lf
 Lint/MissingSuper:
@@ -30,3 +29,7 @@ Layout/ParameterAlignment:
   Enabled: false
 Style/OptionalBooleanParameter:
   Enabled: false
+required:
+  - rubocop-rake
+  - rubocop-minitest
+  - rubocop-performance
