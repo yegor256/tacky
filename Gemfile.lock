@@ -69,7 +69,7 @@ DEPENDENCIES
   rubocop-minitest (> 0)
   rubocop-performance (> 0)
   rubocop-rake (> 0)
-  rubocop-rspec (= 3.4.0)
+  rubocop-rspec (> 0)
   tacky!
 
 BUNDLED WITH
