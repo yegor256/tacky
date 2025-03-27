@@ -18,47 +18,95 @@ class TackyTest < Minitest::Test
     end
     bar = Tacky.new(foo)
     first = bar.value
-    assert_equal(bar.value, first)
+    10.times do
+      assert_equal(bar.value, first)
+    end
   end
 
   def test_passes_hash_args
     foo = Object.new
     def foo.value(one, two:)
-      rand(one + two)
+      "#{one} #{rand(one + two)}"
     end
     bar = Tacky.new(foo)
     first = bar.value(42, two: 1)
-    assert_equal(bar.value(42, two: 1), first)
-    refute_equal(bar.value(777, two: 1), first)
-    refute_equal(bar.value(42, two: 555), first)
+    10.times do
+      assert_equal(bar.value(42, two: 1), first)
+      refute_equal(bar.value(777, two: 1), first)
+      refute_equal(bar.value(42, two: 555), first)
+    end
+  end
+
+  def test_passes_hash_as_arg
+    foo = Object.new
+    def foo.value(one, two)
+      "#{one} #{rand(one + two.size)}"
+    end
+    bar = Tacky.new(foo)
+    first = bar.value(42, { a: 22 })
+    10.times do
+      assert_equal(bar.value(42, { a: 22 }), first)
+      refute_equal(bar.value(42, { a: 23 }), first)
+      refute_equal(bar.value(43, { a: 22 }), first)
+    end
+  end
+
+  def test_passes_hash_as_first_arg
+    foo = Object.new
+    def foo.value(one, two)
+      "#{one} #{rand(one.size + two)}"
+    end
+    bar = Tacky.new(foo)
+    first = bar.value({ a: 22 }, 42)
+    10.times do
+      assert_equal(bar.value({ a: 22 }, 42), first)
+      refute_equal(bar.value({ a: 23 }, 42), first)
+      refute_equal(bar.value({ a: 22 }, 43), first)
+    end
+  end
+
+  def test_passes_two_hash_args
+    foo = Object.new
+    def foo.value(one, two, three:, four: 4)
+      "#{one} #{rand(one + two + three + four)}"
+    end
+    bar = Tacky.new(foo)
+    first = bar.value(42, 43, three: 1, four: 1)
+    10.times do
+      assert_equal(bar.value(42, 43, three: 1, four: 1), first)
+      refute_equal(bar.value(42, 43, three: 1, four: 555), first)
+      refute_equal(bar.value(42, 43, three: 555, four: 1), first)
+    end
   end
 
   def test_passes_default_hash_args
     foo = Object.new
-    def foo.value(_one, _two: 42)
-      rand(100)
+    def foo.value(one, two: 42)
+      "#{one} #{rand(one + two)}"
     end
     bar = Tacky.new(foo)
     first = bar.value(42)
-    assert_equal(bar.value(42), first)
-    refute_equal(bar.value(0), first)
+    10.times do
+      assert_equal(bar.value(42), first)
+      refute_equal(bar.value(0), first)
+    end
   end
 
   def test_passes_one_default_hash_args
     foo = Object.new
-    def foo.value(_one: 42)
-      rand(100)
+    def foo.value(one: 42)
+      "#{one} #{rand(one)}"
     end
     bar = Tacky.new(foo)
     first = bar.value
     assert_equal(bar.value, first)
-    refute_equal(bar.value(_one: 44), first)
+    refute_equal(bar.value(one: 44), first)
   end
 
   def test_passes_default_args
     foo = Object.new
-    def foo.value(_one = 42)
-      rand(100)
+    def foo.value(one = 42)
+      "#{one} #{rand(one)}"
     end
     bar = Tacky.new(foo)
     first = bar.value
