@@ -33,13 +33,23 @@ class Tacky
 
   def method_missing(*args)
     @mutex.synchronize do
-      unless @cache.key?(args)
-        @cache[args] = @origin.__send__(*args) do |*a|
-          yield(*a) if block_given?
-        end
-        @cache[args] = Tacky.new(@cache[args], deep: @deep) if @deep && STOP.none? { |t| @cache[args].is_a?(t) }
+      key = args.dup
+      mtd = args.shift
+      unless @cache.key?(key)
+        params = @origin.method(mtd).parameters
+        @cache[key] =
+          if params.any? { |p| p[0] == :keyreq }
+            @origin.__send__(mtd, *args[0...-1], **args.last) do |*a|
+              yield(*a) if block_given?
+            end
+          else
+            @origin.__send__(mtd, *args) do |*a|
+              yield(*a) if block_given?
+            end
+          end
+        @cache[key] = Tacky.new(@cache[key], deep: @deep) if @deep && STOP.none? { |t| @cache[key].is_a?(t) }
       end
-      @cache[args]
+      @cache[key]
     end
   end
 

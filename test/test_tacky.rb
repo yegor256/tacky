@@ -21,6 +21,36 @@ class TackyTest < Minitest::Test
     assert_equal(bar.value, first)
   end
 
+  def test_passes_hash_args
+    foo = Object.new
+    def foo.value(_one, _two:)
+      rand(100)
+    end
+    bar = Tacky.new(foo)
+    first = bar.value(42, _two: 1)
+    assert_equal(bar.value(42, _two: 1), first)
+  end
+
+  def test_passes_default_hash_args
+    foo = Object.new
+    def foo.value(_one, _two: 42)
+      rand(100)
+    end
+    bar = Tacky.new(foo)
+    first = bar.value(42)
+    assert_equal(bar.value(42), first)
+  end
+
+  def test_passes_default_args
+    foo = Object.new
+    def foo.value(_one = 42)
+      rand(100)
+    end
+    bar = Tacky.new(foo)
+    first = bar.value
+    assert_equal(bar.value, first)
+  end
+
   def test_deep_caching
     foo = Object.new
     def foo.child
