@@ -23,12 +23,14 @@ class TackyTest < Minitest::Test
 
   def test_passes_hash_args
     foo = Object.new
-    def foo.value(_one, _two:)
-      rand(100)
+    def foo.value(one, two:)
+      rand(one + two)
     end
     bar = Tacky.new(foo)
-    first = bar.value(42, _two: 1)
-    assert_equal(bar.value(42, _two: 1), first)
+    first = bar.value(42, two: 1)
+    assert_equal(bar.value(42, two: 1), first)
+    refute_equal(bar.value(777, two: 1), first)
+    refute_equal(bar.value(42, two: 555), first)
   end
 
   def test_passes_default_hash_args
@@ -39,6 +41,7 @@ class TackyTest < Minitest::Test
     bar = Tacky.new(foo)
     first = bar.value(42)
     assert_equal(bar.value(42), first)
+    refute_equal(bar.value(0), first)
   end
 
   def test_passes_one_default_hash_args
@@ -49,6 +52,7 @@ class TackyTest < Minitest::Test
     bar = Tacky.new(foo)
     first = bar.value
     assert_equal(bar.value, first)
+    refute_equal(bar.value(_one: 44), first)
   end
 
   def test_passes_default_args
@@ -59,6 +63,7 @@ class TackyTest < Minitest::Test
     bar = Tacky.new(foo)
     first = bar.value
     assert_equal(bar.value, first)
+    refute_equal(bar.value(7), first)
   end
 
   def test_deep_caching

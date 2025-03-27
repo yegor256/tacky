@@ -32,14 +32,16 @@ class Tacky
   end
 
   def method_missing(*args)
+    maybe = %i[key keyreq]
     @mutex.synchronize do
       key = args.dup
       mtd = args.shift
       unless @cache.key?(key)
         params = @origin.method(mtd).parameters
+        reqs = params.count { |p| p[0] == :req }
         @cache[key] =
-          if params.any? { |p| p[0] == :keyreq }
-            @origin.__send__(mtd, *args[0...-1], **args.last) do |*a|
+          if params.any? { |p| maybe.include?(p[0]) } && args.size > reqs
+            @origin.__send__(mtd, *args[0..-2], **args.last) do |*a|
               yield(*a) if block_given?
             end
           else
