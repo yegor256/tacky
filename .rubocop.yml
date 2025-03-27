@@ -6,6 +6,12 @@ AllCops:
   TargetRubyVersion: 2.3
   NewCops: enable
   SuggestExtensions: false
+plugins:
+  - rubocop-rake
+  - rubocop-minitest
+  - rubocop-performance
+Minitest/EmptyLineBeforeAssertionMethods:
+  Enabled: false
 Layout/EndOfLine:
   EnforcedStyle: lf
 Lint/MissingSuper:
@@ -32,7 +38,3 @@ Layout/ParameterAlignment:
   Enabled: false
 Style/OptionalBooleanParameter:
   Enabled: false
-require:
-  - rubocop-rake
-  - rubocop-minitest
-  - rubocop-performance

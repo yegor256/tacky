@@ -18,7 +18,7 @@ class TackyTest < Minitest::Test
     end
     bar = Tacky.new(foo)
     first = bar.value
-    assert(bar.value == first)
+    assert_equal(bar.value, first)
   end
 
   def test_deep_caching
@@ -32,8 +32,8 @@ class TackyTest < Minitest::Test
     end
     bar = Tacky.new(foo, deep: true)
     first = bar.child.value
-    assert(first.is_a?(Numeric))
-    assert(bar.child.value == first)
+    assert_kind_of(Numeric, first)
+    assert_equal(bar.child.value, first)
   end
 
   def test_stops_on_string
@@ -42,7 +42,7 @@ class TackyTest < Minitest::Test
       'hello'
     end
     bar = Tacky.new(foo)
-    assert(bar.value.is_a?(String))
+    assert_kind_of(String, bar.value)
   end
 
   def test_wraps_void_returning_methods
