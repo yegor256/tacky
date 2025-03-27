@@ -6,10 +6,10 @@
 source 'https://rubygems.org'
 gemspec
 
-gem 'minitest', '5.25.4', require: false
-gem 'rake', '13.2.1', require: false
-gem 'rdoc', '6.11.0', require: false
-gem 'rubocop', '1.71.0', require: false
+gem 'minitest', '~>5.25', require: false
+gem 'rake', '~>13.2', require: false
+gem 'rdoc', '~>6.11', require: false
+gem 'rubocop', '~>1.71', require: false
 gem 'rubocop-minitest', '>0', require: false
 gem 'rubocop-performance', '>0', require: false
 gem 'rubocop-rake', '>0', require: false
