@@ -1,13 +1,13 @@
 # Caching Decorator for Ruby Objects
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
-[![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/tacky)](http://www.rultor.com/p/yegor256/tacky)
+[![DevOps By Rultor.com](https://www.rultor.com/b/yegor256/tacky)](https://www.rultor.com/p/yegor256/tacky)
 [![We recommend RubyMine](https://www.elegantobjects.org/rubymine.svg)](https://www.jetbrains.com/ruby/)
 
 [![rake](https://github.com/yegor256/tacky/actions/workflows/rake.yml/badge.svg)](https://github.com/yegor256/tacky/actions/workflows/rake.yml)
-[![Gem Version](https://badge.fury.io/rb/tacky.svg)](http://badge.fury.io/rb/tacky)
+[![Gem Version](https://badge.fury.io/rb/tacky.svg)](https://badge.fury.io/rb/tacky)
 [![Maintainability](https://api.codeclimate.com/v1/badges/224939b58aa606fdd56c/maintainability)](https://codeclimate.com/github/yegor256/tacky/maintainability)
-[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/yegor256/tacky/master/frames)
+[![Yard Docs](https://img.shields.io/badge/yard-docs-blue.svg)](https://rubydoc.info/github/yegor256/tacky/master/frames)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/tacky)](https://hitsofcode.com/view/github/yegor256/tacky)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/tacky/blob/master/LICENSE.txt)
 
@@ -21,7 +21,7 @@ Then, use it like this:
 
 ```ruby
 require 'tacky'
-obj = Tacky.new(obj)
+tackified = Tacky.new(obj)
 ```
 
 That's it, all method calls will be cached. This means that only the first

@@ -7,7 +7,7 @@ require 'rubygems'
 require 'rake'
 require 'rake/clean'
 
-CLEAN = FileList['coverage']
+CLEAN.include('coverage')
 
 def name
   @name ||= File.basename(Dir['*.gemspec'].first, '.*')
@@ -38,5 +38,5 @@ require 'rubocop/rake_task'
 desc 'Run RuboCop on all directories'
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = true
-  task.requires << 'rubocop-rspec'
+  task.options = ['--plugin', 'rubocop-rspec']
 end
