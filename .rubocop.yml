@@ -38,3 +38,4 @@ Layout/ParameterAlignment:
   Enabled: false
 Style/OptionalBooleanParameter:
   Enabled: false
+require: []
