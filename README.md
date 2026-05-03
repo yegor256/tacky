@@ -30,7 +30,7 @@ will be intercepted by the `Tacky` decorator, which will return
 previously calculated values. The decorator keeps all values in its internal
 `Hash`.
 
-If you want all methods of everything your methods return be cached too, you
+If you want all methods of everything your methods return to be cached too, you
 need to use "deep" caching (it's `true` by default):
 
 ```ruby
