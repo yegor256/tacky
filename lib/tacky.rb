@@ -15,14 +15,7 @@
 class Tacky
   undef_method :send
 
-  # Deep nesting will stop at these classes.
-  STOP = [
-    Numeric, NilClass,
-    TrueClass, FalseClass,
-    Array, Hash,
-    Time,
-    String
-  ].freeze
+  STOP = [Numeric, NilClass, TrueClass, FalseClass, Array, Hash, Time, String].freeze
 
   def initialize(origin, deep: true)
     @origin = origin

@@ -10,6 +10,7 @@ plugins:
   - rubocop-rake
   - rubocop-minitest
   - rubocop-performance
+  - rubocop-elegant
 Minitest/EmptyLineBeforeAssertionMethods:
   Enabled: false
 Layout/EndOfLine:
@@ -38,4 +39,23 @@ Layout/ParameterAlignment:
   Enabled: false
 Style/OptionalBooleanParameter:
   Enabled: false
-require: []
+Style/RequireOrder:
+  Exclude:
+    - 'Rakefile'
+Elegant/ClassInModule:
+  Exclude:
+    - 'lib/**/*'
+    - '**/test_*.rb'
+    - '**/*Test.rb'
+Elegant/GoodMethodName:
+  AllowedNames:
+    - 'method_missing'
+    - 'respond_to?'
+    - 'respond_to_missing?'
+Elegant/NoRedundantVariable:
+  Exclude:
+    - 'test/**/*'
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: false
+Layout/EmptyLineBetweenDefs:
+  Enabled: false
