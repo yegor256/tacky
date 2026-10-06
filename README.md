@@ -14,7 +14,7 @@
 First, install it:
 
 ```bash
-$ gem install tacky
+gem install tacky
 ```
 
 Then, use it like this:
@@ -48,9 +48,9 @@ your pull request. You will need to have
 [Ruby](https://www.ruby-lang.org/en/) 2.3+ and
 [Bundler](https://bundler.io/) installed. Then:
 
-```
-$ bundle update
-$ bundle exec rake
+```bash
+bundle update
+bundle exec rake
 ```
 
 If it's clean and you don't see any error messages, submit your pull request.
